@@ -1,0 +1,41 @@
+<br><h2>Search Movies</h2>
+<br>
+
+<app-filter-movies (movieEmitter)="filterSubmit($event)"></app-filter-movies>
+<br>
+<p-table [contextMenu]="cm" [(contextMenuSelection)]="selectedMovie"  (sortFunction)="customSort($event)" [customSort]="true" [columns]="cols" [value]="data" selectionMode="single"  (onRowSelect)="onRowSelect($event)" [(selection)]="selectedMovie"  dataKey="title" >
+  <ng-template pTemplate="caption">
+    List of Movies
+</ng-template>
+  <ng-template pTemplate="header" let-columns>
+      <tr>
+          <th *ngFor="let col of columns" [pSortableColumn]="col.field">
+              {{col.header}}
+              <p-sortIcon [field]="col.field" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+          </th>
+      </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-rowData let-columns="columns">
+      <tr [pSelectableRow]="rowData" [pContextMenuRow]="rowData">
+          <td *ngFor="let col of columns">
+              {{rowData[col.field]}}
+          </td>
+      </tr>
+  </ng-template>
+  <ng-template pTemplate="summary" let-rowData>
+   <div>
+        <p-button  icon="pi pi-plus" (click)="showDialogToAdd()" label="Add"></p-button>
+      </div>
+</ng-template>    
+  
+</p-table>
+<p-contextMenu #cm [model]="items"></p-contextMenu>
+<p-confirmDialog></p-confirmDialog>
+<p-dialog header="Movie Details" [(visible)]="displayDialog" [responsive]="true"  [modal]="true" [width]="300">
+  <app-update-movie [movie]="selectedMovie" (submitForm)="updateSubmit($event,'Movie edited')"></app-update-movie>
+</p-dialog>
+<p-dialog header="Add Movie" [(visible)]="displayDialogAdd" [responsive]="true"  [modal]="true" [width]="300">
+  <app-add-movie (submitForm)="updateSubmit($event,'Movie added')"></app-add-movie>
+</p-dialog>
+<p-toast [style]="{marginTop: '80px'}"></p-toast>
+<app-loading  *ngIf="loading"></app-loading>

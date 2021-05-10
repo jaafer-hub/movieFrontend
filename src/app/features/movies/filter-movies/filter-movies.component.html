@@ -1,0 +1,35 @@
+<p-toolbar>
+  <h3>Filter</h3>
+    <div class="ui-toolbar-group-left row col-xl-11">
+      <div class=" col-xl-3 col-sm-12 col-xs-12 col-lg-3 col-sm-3">
+        <span class="ui-float-label">
+            <input id="float-title" type="text" [(ngModel)]="movie.title" pInputText> 
+            <label for="float-title">Title</label>
+        </span>
+      </div>
+      <div class=" col-xl-3 col-sm-12 col-xs-12 col-lg-3 col-sm-3">
+        <span class="ui-float-label">
+            <input id="float-director" type="text" [(ngModel)]="movie.director" pInputText> 
+            <label for="float-director">Director</label>
+        </span>
+      </div>
+        <div class=" col-xl-3 col-sm-12 col-xs-12 col-lg-3 col-sm-3">
+        <span class="ui-float-label">
+          
+            <p-calendar  dateFormat="dd/mm/yy" [showIcon]="true" id="releaseDate" [(ngModel)]="movie.releaseDateDate"></p-calendar>
+            <label for="float-releaseDate">Release Date</label>
+            
+        </span>
+      </div>
+        <div class=" col-xl-3 col-sm-12 col-xs-12 col-lg-3 col-sm-3">
+        <span class="ui-float-label">
+            <input id="float-type" type="text" [(ngModel)]="movie.type" pInputText> 
+            <label for="float-type">Type</label>
+        </span>
+      </div>
+    </div>
+    
+    <div class="ui-toolbar-group-right col-xl-1">
+        <button class="float-right" pButton type="button" icon="pi pi-search" (click)="search()"></button>
+    </div>
+</p-toolbar>
