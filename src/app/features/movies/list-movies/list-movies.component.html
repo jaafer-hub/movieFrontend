@@ -17,9 +17,10 @@
   </ng-template>
   <ng-template pTemplate="body" let-rowData let-columns="columns">
       <tr [pSelectableRow]="rowData" [pContextMenuRow]="rowData">
-          <td *ngFor="let col of columns">
-              {{rowData[col.field]}}
-          </td>
+        <td>{{rowData.title}}</td>
+        <td>{{rowData.director}}</td>
+        <td>{{rowData.releaseDate}}</td>
+        <td>{{rowData.type}}</td>
       </tr>
   </ng-template>
   <ng-template pTemplate="summary" let-rowData>
